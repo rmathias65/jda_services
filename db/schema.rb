@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131103175511) do
+ActiveRecord::Schema.define(version: 20131105155009) do
+
+  create_table "assets", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "model_number"
+    t.string   "serial_number"
+    t.string   "asset_number"
+    t.date     "purchase_date"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"

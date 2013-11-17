@@ -1,0 +1,39 @@
+<h1>Listing assets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Model number</th>
+      <th>Serial number</th>
+      <th>Asset number</th>
+      <th>Purchase date</th>
+      <th>Active</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assets.each do |asset| %>
+      <tr>
+        <td><%= asset.name %></td>
+        <td><%= asset.description %></td>
+        <td><%= asset.model_number %></td>
+        <td><%= asset.serial_number %></td>
+        <td><%= asset.asset_number %></td>
+        <td><%= asset.purchase_date %></td>
+        <td><%= asset.active %></td>
+        <td><%= link_to 'Show', asset %></td>
+        <td><%= link_to 'Edit', edit_asset_path(asset) %></td>
+        <td><%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Asset', new_asset_path %>

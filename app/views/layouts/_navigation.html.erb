@@ -1,5 +1,30 @@
 <%= link_to "Home", root_path, :class => 'brand' %>
-<ul class="nav">
+<ul class="right">
+  <% if user_signed_in? %>
+    <% if current_user.has_role? :admin %>
+      <li class="has-dropdown">
+      <%= link_to 'Admin', users_path %>
+      <ul class="dropdown">
+        <li><a href="#">Users</a></li>
+        <li><a href="#">Employees</a></li>
+        <li class="has-dropdown">
+          <%= link_to 'Assets', assets_path %>
+          <ul class="dropdown">
+            <li><a href="#">Validation Schedule</a></li>
+            <li><a href="#">Validation Status</a></li>
+          </ul>
+        </li>
+      </ul>
+      </li>
+    <% end %>
+    <li>
+    <%= link_to 'Edit account', edit_user_registration_path %>
+    </li>
+  <% else %>
+    <li>
+    <%= link_to 'Sign up', new_user_registration_path %>
+    </li>
+  <% end %>
   <% if user_signed_in? %>
     <li>
     <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
@@ -7,20 +32,6 @@
   <% else %>
     <li>
     <%= link_to 'Login', new_user_session_path %>
-    </li>
-  <% end %>
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Edit account', edit_user_registration_path %>
-    </li>
-    <% if current_user.has_role? :admin %>
-      <li>
-      <%= link_to 'Admin', users_path %>
-      </li>
-    <% end %>
-  <% else %>
-    <li>
-    <%= link_to 'Sign up', new_user_registration_path %>
     </li>
   <% end %>
 </ul>
